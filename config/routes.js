@@ -4,6 +4,7 @@ const walks = require('../controllers/walks');
 const dogs = require('../controllers/dogs');
 const users = require('../controllers/users');
 const exercise = require('../controllers/exercise');
+const auth = require('../controllers/auth');
 
 // routes go here
 router.route('/walks')
@@ -32,6 +33,12 @@ router.route('/users/:id')
 
 router.route('/dogs/:id/exercise')
   .get(exercise.show);
+
+router.route('/register')
+  .post(auth.register);
+
+router.route('/login')
+  .post(auth.login);
 
 router.all('/*', (req, res) => res.notFound());
 
