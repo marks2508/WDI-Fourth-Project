@@ -4,7 +4,18 @@ const bcrypt = require('bcrypt');
 const walkSchema = mongoose.Schema({
   start: {},
   end: {},
-  distance: { type: String }
+  distance: { type: String },
+  time: {type: String},
+  name: {type: String}
+});
+
+walkSchema.set('toJSON', {
+  getters: true,
+  virtuals: true,
+  transform(obj, json) {
+    delete json._id;
+    delete json.__v;
+  }
 });
 
 
@@ -13,8 +24,7 @@ const dogSchema = mongoose.Schema({
   breed: {type: String, required: 'Please select a breed'},
   age: {type: Number, required: 'Please enter an age'},
   sex: {type: String, required: 'Please select a sex'},
-  image: {type: String, required: 'Load a photo'},
-  walks: [walkSchema]
+  image: {type: String, required: 'Load a photo'}
 });
 
 
@@ -36,7 +46,8 @@ const userSchema = new mongoose.Schema({
   username: {type: String, required: 'Please enter your username'},
   email: {type: String, required: 'Please enter a valid email address'},
   password: {type: String, required: 'Please choose a password'},
-  dogs: [dogSchema]
+  dogs: [dogSchema],
+  walks: [walkSchema]
 });
 
 userSchema.set('toJSON', {
@@ -56,7 +67,7 @@ userSchema
   });
 
 userSchema.pre('validate', function checkPassword(next) {
-  if(!this._passwordConfirmation || this._passwordConfirmation !== this.password) {
+  if(this.isModified('password') && (!this._passwordConfirmation || this._passwordConfirmation !== this.password)) {
     this.invalidate('passwordConfirmation', 'Passwords do not match');
   }
   next();

@@ -1,4 +1,5 @@
-const Dog = require('../models/dog');
+const Dog = require('../models/user');
+const User = require('../models/user');
 
 function dogsIndex(req, res, next) {
   Dog
@@ -12,10 +13,22 @@ function dogsIndex(req, res, next) {
 }
 
 function dogsCreate(req, res, next) {
-  req.body.createdBy = req.user;
-  Dog
-    .create(req.body)
-    .then(dog => res.status(201).json(dog))
+  // req.body.createdBy = req.user;
+  // Dog
+  //   .create(req.body)
+  //   .then(dog => res.status(201).json(dog))
+  //   .catch(next);
+  User
+    .findById(req.currentUser._id)
+    .exec()
+    .then(user => {
+      if(!user) return res.notFound();
+
+      const dog = user.dogs.create(req.body);
+      user.dogs.push(dog);
+      return user.save()
+        .then(() => res.json(dog));
+    })
     .catch(next);
 }
 

@@ -1,7 +1,7 @@
-const Walk = require('../models/walk');
+const User = require('../models/user');
 
 function walksIndex(req, res, next) {
-  Walk
+  User
     .find()
     .exec()
     .then(walks => res.json(walks))
@@ -9,37 +9,52 @@ function walksIndex(req, res, next) {
 }
 
 function walksCreate(req, res, next) {
-  Walk
-    .create(req.body)
+  User
+    .findById(req.currentUser._id)
+    .exec()
+    .then(user => {
+      if(!user) return res.notFound();
+      const walk = user.walks.create(req.body);
+      user.walks.push(walk);
+
+      user.save();
+      return walk;
+    })
     .then(walk => res.status(201).json(walk))
     .catch(next);
 }
 
 function walksShow(req, res, next) {
-  Walk
-    .findById(req.params.id)
+  User
+    .findById(req.currentUser._id)
     .exec()
-    .then((walk) => {
-      if(!walk) return res.notFound();
+    .then((user) => {
+      if(!user) return res.notFound();
+
+      const walk = user.walks.id(req.params.id);
       res.json(walk);
     })
     .catch(next);
 }
 
+// TODO update this route
 function walksUpdate(req, res, next) {
-  Walk
+  User
     .findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then(walk => res.status(200).json(walk))
     .catch(next);
 }
 
 function walksDelete(req, res, next) {
-  Walk
-    .findById(req.params.id)
+  User
+    .findById(req.currentUser._id)
     .exec()
-    .then((walk) => {
-      if(!walk) return res.notFound();
-      return walk.remove();
+    .then((user) => {
+      if(!user) return res.notFound();
+
+      const walk = user.walks.id(req.params.id);
+      walk.remove();
+      return user.save();
     })
     .then(() => res.status(204).end())
     .catch(next);

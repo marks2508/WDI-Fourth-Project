@@ -5,7 +5,7 @@ import Auth from '../../lib/Auth';
 
 class DogsNew extends React.Component {
   state = {
-    dog: {
+    dogs: {
       name: '',
       breed: '',
       age: '',
@@ -14,27 +14,30 @@ class DogsNew extends React.Component {
     },
     errors: {}
   }
+
   handleChange = ({target: {name, value}}) => {
-    const dog = Object.assign({}, this.state.dog, {[name]: value});
+    const dogs = Object.assign({}, this.state.dogs, {[name]: value});
     const errors = Object.assign({}, this.state.errors, {[name]: ''});
-    this.setState({dog, errors});
+    this.setState({dogs, errors});
   }
+
   handleSubmit = (e) => {
     e.preventDefault();
     Axios
-      .post('/api/dogs', this.state.orchid, {
+      .post('/api/dogs', this.state.dogs, {
         headers: {Authorization: `Bearer ${Auth.getToken()}`}
       })
-      .then(() => this.props.history.push('/'))
+      .then(() => this.props.history.push('/profile'))
       .catch(err => this.setState({errors: err.response.data.errors}));
   }
+
   render() {
     return (
       <DogsForm
         history={this.props.history}
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
-        dog={this.state.dog}
+        dog={this.state.dogs}
         errors={this.state.errors}
       />
     );
