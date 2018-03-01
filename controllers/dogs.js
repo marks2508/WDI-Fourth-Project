@@ -1,6 +1,18 @@
 const Dog = require('../models/dog');
 
+function dogsIndex(req, res, next) {
+  Dog
+    .find({createdBy: req.user.id})
+    .exec()
+    .then((dog) => {
+      if(!dog) res.notFound();
+      res.json(dog);
+    })
+    .catch(next);
+}
+
 function dogsCreate(req, res, next) {
+  req.body.createdBy = req.user;
   Dog
     .create(req.body)
     .then(dog => res.status(201).json(dog))
@@ -38,6 +50,7 @@ function dogsDelete(req, res, next) {
 }
 
 module.exports = {
+  index: dogsIndex,
   create: dogsCreate,
   show: dogsShow,
   update: dogsUpdate,

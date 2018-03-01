@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 const BackButton = ({history}) => {
   return (
@@ -7,5 +8,4 @@ const BackButton = ({history}) => {
     </div>
   );
 };
-
-export default BackButton;
+export default withRouter(BackButton);

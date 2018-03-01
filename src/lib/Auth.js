@@ -5,7 +5,7 @@ class Auth {
   static getToken() {
     return localStorage.getItem('token');
   }
-  static isAuthenicated() {
+  static isAuthenticated() {
     return !!this.getToken();
   }
   static logout() {
@@ -14,7 +14,7 @@ class Auth {
   static getPayload() {
     const token = this.getToken();
     if(!token) return null;
-    return JSON.parse(atob(token.split('.'[1])));
+    return JSON.parse(atob(token.split('.')[1]));
   }
 }
 
