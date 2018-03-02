@@ -1,23 +1,7 @@
 const Dog = require('../models/user');
 const User = require('../models/user');
 
-function dogsIndex(req, res, next) {
-  Dog
-    .find({createdBy: req.user.id})
-    .exec()
-    .then((dog) => {
-      if(!dog) res.notFound();
-      res.json(dog);
-    })
-    .catch(next);
-}
-
 function dogsCreate(req, res, next) {
-  // req.body.createdBy = req.user;
-  // Dog
-  //   .create(req.body)
-  //   .then(dog => res.status(201).json(dog))
-  //   .catch(next);
   User
     .findById(req.currentUser._id)
     .exec()
@@ -33,12 +17,13 @@ function dogsCreate(req, res, next) {
 }
 
 function dogsShow(req, res, next) {
-  Dog
-    .findById(req.params.id)
+  User
+    .findById(req.currentUser.id)
     .exec()
-    .then((dog) => {
-      if(!dog) return res.notFound();
-      res.json(dog);
+    .then(user => {
+      if(!user) return res.notFound();
+      const dog = user.dogs.id(req.params.id);
+      return res.status(200).json(dog);
     })
     .catch(next);
 }
@@ -62,10 +47,31 @@ function dogsDelete(req, res, next) {
     .catch(next);
 }
 
+function dogsWalksCreate(req, res, next) {
+  // req.body.date     = new Date();
+  req.body.distance = parseFloat(req.body.distance);
+
+  User
+    .findById(req.currentUser._id)
+    .exec()
+    .then(user => {
+      if(!user) return res.notFound();
+
+      const dog  = user.dogs.id(req.params.id);
+      const walk = dog.walks.create(req.body);
+      dog.walks.push(walk);
+
+      user.save();
+      return walk;
+    })
+    .then(walk => res.status(201).json(walk))
+    .catch(next);
+}
+
 module.exports = {
-  index: dogsIndex,
   create: dogsCreate,
   show: dogsShow,
   update: dogsUpdate,
-  delete: dogsDelete
+  delete: dogsDelete,
+  addWalk: dogsWalksCreate
 };

@@ -9,33 +9,26 @@ const auth = require('../controllers/auth');
 
 const secureRoute = require('../lib/secureRoute');
 
-// routes go here
-router.route('/walks')
-  .get(walks.index)
-  .post(secureRoute, walks.create);
-
-router.route('/walks/:id')
-  .get(secureRoute, walks.show)
-  .put(secureRoute, walks.update)
-  .delete(secureRoute, walks.delete);
-
 router.route('/dogs')
-  .get(dogs.index)
   .post(secureRoute, dogs.create);
 
 router.route('/dogs/:id')
-  .get(dogs.show)
+  .get(secureRoute, dogs.show)
   .put(dogs.update)
   .delete(dogs.delete);
+
+router.route('/dogs/:id/walks')
+  .post(secureRoute, dogs.addWalk);
+
+router.route('/dogs/:dogId/walks/:walkId')
+  .get(secureRoute, walks.show)
+  .put(secureRoute, walks.update)
+  .delete(secureRoute, walks.delete);
 
 router.route('/users/:id')
   .get(users.show)
   .put(users.update);
 
-
-
-// router.route('/dogs/:id/exercise')
-//   .get(exercise.show);
 
 router.route('/register')
   .post(auth.register);

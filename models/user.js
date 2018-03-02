@@ -4,9 +4,10 @@ const bcrypt = require('bcrypt');
 const walkSchema = mongoose.Schema({
   start: {},
   end: {},
-  distance: { type: String },
-  time: {type: String},
-  name: {type: String}
+  distance: { type: Number },
+  duration: {type: String},
+  name: {type: String},
+  date: { type: String }
 });
 
 walkSchema.set('toJSON', {
@@ -24,7 +25,8 @@ const dogSchema = mongoose.Schema({
   breed: {type: String, required: 'Please select a breed'},
   age: {type: Number, required: 'Please enter an age'},
   sex: {type: String, required: 'Please select a sex'},
-  image: {type: String, required: 'Load a photo'}
+  image: {type: String, required: 'Load a photo'},
+  walks: [walkSchema]
 });
 
 
@@ -46,8 +48,7 @@ const userSchema = new mongoose.Schema({
   username: {type: String, required: 'Please enter your username'},
   email: {type: String, required: 'Please enter a valid email address'},
   password: {type: String, required: 'Please choose a password'},
-  dogs: [dogSchema],
-  walks: [walkSchema]
+  dogs: [dogSchema]
 });
 
 userSchema.set('toJSON', {

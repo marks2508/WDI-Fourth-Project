@@ -29,7 +29,9 @@ class WalksShow extends React.Component {
           <h2>Duration: {this.state.walk.time}</h2>
         </div>
         <BackButton />
-        <GoogleMap />
+        {/* <GoogleMap */}
+
+        />
       </main>
     );
   }

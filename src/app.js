@@ -11,6 +11,7 @@ import Profile from './components/profile/ProfileShow';
 import WalksNew from './components/walks/WalksNew';
 import WalksShow from './components/walks/WalksShow';
 import DogsNew from './components/dogs/DogsNew';
+import DogsShow from './components/dogs/DogsShow';
 import Homepage from './components/utility/Homepage';
 
 import './scss/style.scss';
@@ -30,8 +31,9 @@ class App extends React.Component {
               <Route path="/register" component={Register} />
               <Route path="/profile" component={Profile} />
               <Route path="/dogs/new" component={DogsNew} />
-              <Route path="/walks/new" component={WalksNew} />
-              <Route path="/walks/:id" component={WalksShow} />
+              <Route path="/dogs/:dogId/walks/:walkId" component={WalksShow} />
+              <Route path="/dogs/:id/walks" component={WalksNew} />
+              <Route path="/dogs/:id" component={DogsShow} />
               <Route exact path="/" component={Homepage} />
             </Switch>
           </main>

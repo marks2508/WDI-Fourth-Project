@@ -3,16 +3,27 @@ import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import BackButton from '../utility/BackButton';
 
-function WalksForm({ handleSubmit, handleGooglePlace, distance, duration }) {
+function WalksForm({ handleSubmit, handleGooglePlace, handleChange, distance, duration }) {
   return (
     <div className="row">
       <div className="page-banner col-md-12">
         <BackButton />
       </div>
       <form className="col-md-6">
-        <div classNam="form-group">
+        <div className="form-group">
           <label>Name of walk</label>
-          <input placeholder="give your walk a name"></input>
+          <input
+            name="name"
+            onChange={handleChange}
+            placeholder="give your walk a name" />
+        </div>
+        <div className="form-group">
+          <label>When was the walk</label>
+          <input
+            type="date"
+            name="date"
+            onChange={handleChange}
+          />
         </div>
         <div className="form-group">
           <label htmlFor="name">Starting</label>
@@ -36,7 +47,7 @@ function WalksForm({ handleSubmit, handleGooglePlace, distance, duration }) {
         <div>
           <label htmlFor="duration">Duration: {duration}</label>
         </div>
-        <button className="btn btn-success" onClick={handleSubmit} >Save</button>
+        <button className="btn btn-success" onClick={handleSubmit}>Save</button>
       </form>
     </div>
   );

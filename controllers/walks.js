@@ -9,6 +9,9 @@ function walksIndex(req, res, next) {
 }
 
 function walksCreate(req, res, next) {
+  req.body.date     = new Date();
+  req.body.distance = parseFloat(req.body.distance);
+
   User
     .findById(req.currentUser._id)
     .exec()

@@ -11,9 +11,16 @@ class WalksNew extends React.Component {
       start: {},
       end: {},
       distance: '',
-      time: ''
+      duration: '',
+      name: '',
+      date: ''
     },
     errors: {}
+  }
+
+  handleChange = ({ target: { name, value } }) => {
+    const walk = Object.assign({}, this.state.walk, { [name]: value });
+    this.setState({ walk });
   }
 
   handleGooglePlace = (place, origin) => {
@@ -29,12 +36,6 @@ class WalksNew extends React.Component {
     });
   }
 
-  callback = (response) => {
-    const walk = Object.assign({}, this.state.walk, {distance: response.rows[0].elements[0].distance.text, time: response.rows[0].elements[0].duration.text});
-    this.setState({walk});
-    console.log(this.state.walk);
-  }
-
   calculateDistance() {
     const service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix({
@@ -45,12 +46,17 @@ class WalksNew extends React.Component {
     }, this.callback);
   }
 
+  callback = (response) => {
+    const walk = Object.assign({}, this.state.walk, {distance: response.rows[0].elements[0].distance.text, duration: response.rows[0].elements[0].duration.text});
+    this.setState({walk});
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.walk);
+
     Axios
-      .post('/api/walks', this.state.walk, { headers: {'Authorization': `Bearer ${Auth.getToken()}` }})
-      .then(() => this.props.history.push('/profile'))
+      .post(`/api/dogs/${this.props.match.params.id}/walks`, this.state.walk, { headers: {'Authorization': `Bearer ${Auth.getToken()}` }})
+      .then(() => this.props.history.push(`/dogs/${this.props.match.params.id}`))
       .catch(err => this.setState({errors: err.response.data.errors}));
   }
 
@@ -59,9 +65,10 @@ class WalksNew extends React.Component {
       <WalksForm
         handleSubmit={this.handleSubmit}
         handleGooglePlace={this.handleGooglePlace}
+        handleChange={this.handleChange}
         errors={this.state.errors}
         distance={this.state.walk.distance}
-        duration={this.state.walk.time}
+        duration={this.state.walk.duration}
         name={this.state.walk.name}
       />
     );
