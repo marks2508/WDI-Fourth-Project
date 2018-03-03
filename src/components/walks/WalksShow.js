@@ -31,7 +31,6 @@ class WalksShow extends React.Component {
         <BackButton />
         {/* <GoogleMap */}
 
-        />
       </main>
     );
   }
