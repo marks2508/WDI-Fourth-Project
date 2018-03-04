@@ -41,6 +41,7 @@ class DogsNew extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6">
+            <h1 className="dog-new-title">Add your dogs details: </h1>
             <DogsForm
               history={this.props.history}
               handleSubmit={this.handleSubmit}

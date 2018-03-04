@@ -7,7 +7,6 @@ function DogsForm({history, handleSubmit, handleChange, dog, handleImageUpload})
   return (
     <div className="row">
       <div className="page-banner col-md-12">
-        <BackButton history={history} />
       </div>
       <form onSubmit={handleSubmit} className="col-md-6">
         <div className="form-group">
@@ -55,9 +54,9 @@ function DogsForm({history, handleSubmit, handleChange, dog, handleImageUpload})
           />
         </div>
         <div className="form-group">
-          <label htmlFor="image">Image</label>
           <ReactFilestack
             apikey="AmjDZVm2oQb64vPxCw6K0z"
+            className="btn btn-primary"
             buttonText="Upload a photo"
             buttonClass="main-button"
             onSuccess={handleImageUpload}
@@ -65,6 +64,9 @@ function DogsForm({history, handleSubmit, handleChange, dog, handleImageUpload})
 
         </div>
         <button className="btn btn-success">Save</button>
+        <br />
+        <br />
+        <BackButton history={history} />
       </form>
       { dog.image && <div className="image-tile col-md-6">
         <h2>Image Preview</h2>

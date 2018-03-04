@@ -7,7 +7,6 @@ function WalksForm({ handleSubmit, handleGooglePlace, handleChange, distance, du
   return (
     <div className="row">
       <div className="page-banner col-md-12">
-        <BackButton />
       </div>
       <form className="col-md-6 dogsForm">
         <div className="form-group dogsForm">
@@ -51,6 +50,11 @@ function WalksForm({ handleSubmit, handleGooglePlace, handleChange, distance, du
           <label  className="exampleFormControlInput1"htmlFor="duration">Duration: {duration}</label>
         </div>
         <button className="btn btn-success" onClick={handleSubmit}>Save</button>
+        <br />
+        <br />
+        <br />
+        <BackButton history={history} />
+
       </form>
     </div>
   );
