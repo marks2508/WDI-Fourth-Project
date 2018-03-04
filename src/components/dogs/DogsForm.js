@@ -1,7 +1,9 @@
 import React from 'react';
 import BackButton from '../utility/BackButton';
+import ReactFilestack from 'filestack-react';
 
-function DogsForm({history, handleSubmit, handleChange, dog, uploadImage}) {
+
+function DogsForm({history, handleSubmit, handleChange, dog, handleImageUpload}) {
   return (
     <div className="row">
       <div className="page-banner col-md-12">
@@ -54,18 +56,20 @@ function DogsForm({history, handleSubmit, handleChange, dog, uploadImage}) {
         </div>
         <div className="form-group">
           <label htmlFor="image">Image</label>
-          <input
-            type="text"
-            className="form-control"
-            id="image"
-            name="image"
-            value={dog.image}
-            onChange={handleChange}
-            onClick={uploadImage}
+          <ReactFilestack
+            apikey="AmjDZVm2oQb64vPxCw6K0z"
+            buttonText="Upload a photo"
+            buttonClass="main-button"
+            onSuccess={handleImageUpload}
           />
+
         </div>
         <button className="btn btn-success">Save</button>
       </form>
+      { dog.image && <div className="image-tile col-md-6">
+        <h2>Image Preview</h2>
+        <img src={dog.image} className="img-responsive" />
+      </div> }
     </div>
   );
 }

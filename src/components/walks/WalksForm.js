@@ -9,43 +9,46 @@ function WalksForm({ handleSubmit, handleGooglePlace, handleChange, distance, du
       <div className="page-banner col-md-12">
         <BackButton />
       </div>
-      <form className="col-md-6">
-        <div className="form-group">
-          <label>Name of walk</label>
+      <form className="col-md-6 dogsForm">
+        <div className="form-group dogsForm">
+          <label htmlFor="name">Name of walk</label>
           <input
+            type="text"
+            className="form-control"
             name="name"
             onChange={handleChange}
             placeholder="give your walk a name" />
         </div>
-        <div className="form-group">
-          <label>When was the walk</label>
+        <div className="form-group dogsForm">
+          <label htmlFor="date">When was the walk</label>
           <input
             type="date"
+            className="form-control"
             name="date"
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="name">Starting</label>
+        <div className="form-group dogsForm">
+          <label htmlFor="starting">Starting</label>
           <Autocomplete
-            style={{width: '90%'}}
+            className="form-group"
             onPlaceSelected={ place => handleGooglePlace(place, 'start') }
             types={[]}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="name">Ending</label>
+        <div className="form-group dogsForm">
+          <label htmlFor="ending">Ending</label>
           <Autocomplete
-            style={{width: '90%'}}
+            className="form-group"
             onPlaceSelected={ place => handleGooglePlace(place, 'end') }
             types={[]}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="distance">Distance: {distance} </label>
+          <label  className="exampleFormControlInput1"htmlFor="distance">Distance: {distance} </label>
         </div>
         <div>
-          <label htmlFor="duration">Duration: {duration}</label>
+          <label  className="exampleFormControlInput1"htmlFor="duration">Duration: {duration}</label>
         </div>
         <button className="btn btn-success" onClick={handleSubmit}>Save</button>
       </form>

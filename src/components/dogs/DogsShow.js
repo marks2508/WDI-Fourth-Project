@@ -42,8 +42,9 @@ class DogsShow extends React.Component {
     const filteredArray = _.filter(this.state.dog.walks, (walk) => regex.test(walk.date));
     if( this.state.date ){
       const total = Object.values(filteredArray).reduce((t, n) => t + n.distance, 0);
-      const totalDistance = total.toFixed(1);
+      const totalDistance = (total * 2).toFixed(1);
       this.setState({distance: totalDistance});
+      console.log(filteredArray.length);
       if (this.state.target > this.state.distance) {
         this.setState({overOrUnder: 'got enough exercise'});
       } else {
@@ -62,25 +63,67 @@ class DogsShow extends React.Component {
       <section>
         {/* <BackButton /> */}
         <main>
-          <div className="profile">
-            <h1>{ this.state.dog.name }</h1>
-            <h1>{this.state.distance}</h1>
-            <h2>{this.state.overOrUnder}</h2>
-            <Link to={`/dogs/${this.state.dog.id}/walks`}>Add walk for { this.state.dog.name}</Link>
-            <BackButton />
-            <h2>{ this.state.dog.name } Walk log</h2>
-            <input name="date" value={this.state.date} onChange={this.handleDateChange} type="date" />
-            <ul>
-              { this.state.dog.name && walks.map(walk =>
-                <li key={walk.id}>
-                  <p>{ walk.name }</p>
-                  <p>Duration: { walk.duration}</p>
-                  <p>Distance: { walk.distance}km</p>
-                  <p>Date: { walk.date }</p>
-                </li>
-              )}
-            </ul>
+          <div className="container">
+
+            <div className="row my-4">
+              <div className="col-lg-8">
+                <img className="img-fluid rounded" src="https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/The-stages-of-puppy-growth.jpg?itok=9ptPJwY8" alt="" />
+              </div>
+              <div className="col-lg-4">
+                <h1>Exercise is vital</h1>
+                <p>All dogs need exercise to keep them happy and healthy. How much exercise they need is down to their breed, age and personality</p>
+                <Link to={`/dogs/${this.state.dog.id}/walks`}>Add a walk</Link>
+                <br />
+                <br />
+                <h1>Pick a day to see log</h1>
+                <input placeholder="Date" className="form-control" name="date" value={this.state.date} onChange={this.handleDateChange} type="date" />
+
+                <br />
+                <br />
+                <BackButton />
+
+              </div>
+            </div>
+
+            <div className="card text-white bg-secondary my-4 text-center">
+              <div className="card-body">
+                <p className="text-white m-0">  </p>
+              </div>
+            </div>
+
+            <div className="row">
+
+              { this.state.dog.name && walks.map((walk) => (
+                <div key={walk.id} className="col-md-8 mb-8">
+                  <ul className="list-group">
+                    <Link to={"/"}><li className="list-group-item d-flex justify-content-between align-items-center">{walk.date}<br />{walk.name}  <span class="badge badge-primary badge-pill">{walk.distance}k</span></li></Link>
+                  </ul>
+
+
+
+            </div>
+          ))}
           </div>
+
+          {/* // <div className="profile">
+          //   <h1>{ this.state.dog.name }</h1>
+          //   <h1>{this.state.distance}</h1>
+          //   <h2>{this.state.overOrUnder}</h2>
+          //   <Link to={`/dogs/${this.state.dog.id}/walks`}>Add walk for { this.state.dog.name}</Link>
+          //   <h2>{ this.state.dog.name } Walk log</h2>
+          //   <input name="date" value={this.state.date} onChange={this.handleDateChange} type="date" />
+          //   <ul>
+          //     { this.state.dog.name && walks.map(walk => */}
+          {/* //       <li key={walk.id}>
+          //         <p>{ walk.name }</p>
+          //         <p>Duration: { walk.duration}</p>
+          //         <p>Distance: { walk.distance}km</p>
+          //         <p>Date: { walk.date }</p>
+          //       </li>
+          //     )}
+          //   </ul>
+          // </div> */}
+        </div>
         </main>
       </section>
     );

@@ -4,6 +4,9 @@ import React from 'react';
 import Axios from 'axios';
 import WalksForm from './WalksForm';
 import Auth from '../../lib/Auth';
+import mapStyles from '../config/mapStyles';
+import GoogleMap from '../maps/GoogleMaps';
+
 
 class WalksNew extends React.Component {
   state = {
@@ -17,6 +20,23 @@ class WalksNew extends React.Component {
     },
     errors: {}
   }
+
+  // componentDidMount() {
+  //   this.map = new google.maps.Map(this.mapCanvas, {
+  //     center: { lat: 51.5085300, lng: -0.1257400 },
+  //     zoom: 14,
+  //     styles: mapStyles
+  //   });
+  //   this.marker = new google.maps.Marker({
+  //     map: this.map,
+  //     position: this.state.center
+  //   });
+  // }
+  // componentWillUnmount() {
+  //   this.map = null;
+  //   this.marker = null;
+  //   this.map = null;
+  // }
 
   handleChange = ({ target: { name, value } }) => {
     const walk = Object.assign({}, this.state.walk, { [name]: value });
@@ -47,7 +67,7 @@ class WalksNew extends React.Component {
   }
 
   callback = (response) => {
-    const walk = Object.assign({}, this.state.walk, {distance: response.rows[0].elements[0].distance.text, duration: response.rows[0].elements[0].duration.text});
+    const walk = Object.assign({}, this.state.walk, {distance: response.rows[0].elements[0].distance.text , duration: response.rows[0].elements[0].duration.text});
     this.setState({walk});
   }
 
@@ -62,15 +82,24 @@ class WalksNew extends React.Component {
 
   render() {
     return (
-      <WalksForm
-        handleSubmit={this.handleSubmit}
-        handleGooglePlace={this.handleGooglePlace}
-        handleChange={this.handleChange}
-        errors={this.state.errors}
-        distance={this.state.walk.distance}
-        duration={this.state.walk.duration}
-        name={this.state.walk.name}
-      />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <GoogleMap />
+          </div>
+          <div className="col-md-6">
+            <WalksForm
+              handleSubmit={this.handleSubmit}
+              handleGooglePlace={this.handleGooglePlace}
+              handleChange={this.handleChange}
+              errors={this.state.errors}
+              distance={this.state.walk.distance}
+              duration={this.state.walk.duration}
+              name={this.state.walk.name}
+            />
+          </div>
+        </div>
+      </div>
     );
   }
 }
