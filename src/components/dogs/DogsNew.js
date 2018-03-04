@@ -31,6 +31,23 @@ class DogsNew extends React.Component {
       .catch(err => this.setState({errors: err.response.data.errors}));
   }
 
+
+  uploadImage() {
+    filepicker.pick(
+      {
+        mimetype: 'image/*',
+        container: 'window',
+        services: ['COMPUTER', 'FACEBOOK', 'INSTAGRAM', 'GOOGLE_DRIVE', 'DROPBOX']
+      },
+      function(Blob){
+        console.log(JSON.stringify(Blob));
+      },
+      function(FPError){
+        console.log(FPError.toString());
+      });
+  }
+
+
   render() {
     return (
       <DogsForm
@@ -39,6 +56,7 @@ class DogsNew extends React.Component {
         handleChange={this.handleChange}
         dog={this.state.dogs}
         errors={this.state.errors}
+        uploadImage={this.uploadImage}
       />
     );
   }

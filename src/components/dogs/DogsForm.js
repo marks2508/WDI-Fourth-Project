@@ -1,7 +1,7 @@
 import React from 'react';
 import BackButton from '../utility/BackButton';
 
-function DogsForm({history, handleSubmit, handleChange, dog}) {
+function DogsForm({history, handleSubmit, handleChange, dog, uploadImage}) {
   return (
     <div className="row">
       <div className="page-banner col-md-12">
@@ -61,6 +61,7 @@ function DogsForm({history, handleSubmit, handleChange, dog}) {
             name="image"
             value={dog.image}
             onChange={handleChange}
+            onClick={uploadImage}
           />
         </div>
         <button className="btn btn-success">Save</button>
