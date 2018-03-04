@@ -92,11 +92,12 @@ class DogsShow extends React.Component {
             </div>
 
             <div className="row">
+              <h1 className="col-md-8">{this.state.dog.name} walked {this.state.distance} kilometers in total<br />{this.state.dog.name}  {this.state.overOrUnder}</h1>
 
               { this.state.dog.name && walks.map((walk) => (
                 <div key={walk.id} className="col-md-8 mb-8">
                   <ul className="list-group">
-                    <Link to={"/dogs/:dogId/walks/:walkId"}><li className="list-group-item d-flex justify-content-between align-items-center">{walk.date}<br />{walk.name}  <span className="badge badge-primary badge-pill">{walk.distance} K</span></li></Link>
+                    <Link to={`/dogs/${this.state.dog.id}/walks/${walk.id}`}><li className="list-group-item d-flex justify-content-between align-items-center">{walk.date}<br />{walk.name}  <span className="badge badge-primary badge-pill">{walk.distance} K</span></li></Link>
                   </ul>
 
 

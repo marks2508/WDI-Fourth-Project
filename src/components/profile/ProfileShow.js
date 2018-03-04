@@ -36,7 +36,6 @@ class ProfileShow extends React.Component {
               <div className="card-body">
                 <Link to={`/dogs/${dog.id}`}><a className="card-link">Walk log for {dog.name}</a></Link>
                 <Link to={`dogs/${dog.id}/walks`}><a className="card-link">Add a walk</a></Link>
-                <Link to="/dogs/new"><button className="btn btn-primary">Add a dog</button></Link>
               </div>
             </div>
           ))}

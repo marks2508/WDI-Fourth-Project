@@ -8,25 +8,27 @@ import GoogleMap from '../maps/GoogleMaps';
 
 class WalksShow extends React.Component {
   state = {
-    walk: {}
+    user: {
+      dog: {
+        walks: {}
+      }
+    }
   }
 
   componentDidMount() {
     Axios
-      .get(`/api/dogs/:dogId/walks/${this.props.match.params.id}`, {
-        headers: {Authorization: `Bearer ${Auth.getToken()}`}
-      })
-      .then(res => this.setState({walk: res.data}, () => console.log(this.state)))
+      .get(`/api/users/${Auth.getPayload().userId}`, { headers: {Authorization: `Bearer ${Auth.getToken()}`}})
+      .then(res => this.setState({dog: res.data}))
+      .then(console.log(this.state))
       .catch(err => console.log(err));
-    console.log(this.state);
   }
   render() {
     return (
       <main>
         <div>
-          <h2>Name of walk: {this.state.walk.name}</h2>
+          {/* <h2>Name of walk: {this.state.walk.name}</h2>
           <h2>Distance: {this.state.walk.distance}</h2>
-          <h2>Duration: {this.state.walk.time}</h2>
+          <h2>Duration: {this.state.walk.time}</h2> */}
         </div>
         <div>
           <BackButton />
