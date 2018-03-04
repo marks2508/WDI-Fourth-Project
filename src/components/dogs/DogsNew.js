@@ -36,22 +36,6 @@ class DogsNew extends React.Component {
     this.setState({ dogs });
   }
 
-  // uploadImage() {
-  //   filepicker.pick(
-  //     {
-  //       mimetype: 'image/*',
-  //       container: 'window',
-  //       services: ['COMPUTER', 'FACEBOOK', 'INSTAGRAM', 'GOOGLE_DRIVE', 'DROPBOX']
-  //     },
-  //     function(Blob){
-  //       console.log(JSON.stringify(Blob));
-  //     },
-  //     function(FPError){
-  //       console.log(FPError.toString());
-  //     });
-  // }
-
-
   render() {
     return (
       <div className="container">
@@ -66,9 +50,6 @@ class DogsNew extends React.Component {
               uploadImage={this.uploadImage}
             />
           </div>
-          {/* <div className="col-md-6">
-            <img src={this.state.dogs.image} />
-          </div> */}
         </div>
       </div>
 

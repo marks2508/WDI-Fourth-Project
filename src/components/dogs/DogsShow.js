@@ -96,7 +96,7 @@ class DogsShow extends React.Component {
               { this.state.dog.name && walks.map((walk) => (
                 <div key={walk.id} className="col-md-8 mb-8">
                   <ul className="list-group">
-                    <Link to={"/"}><li className="list-group-item d-flex justify-content-between align-items-center">{walk.date}<br />{walk.name}  <span class="badge badge-primary badge-pill">{walk.distance}k</span></li></Link>
+                    <Link to={"/dogs/:dogId/walks/:walkId"}><li className="list-group-item d-flex justify-content-between align-items-center">{walk.date}<br />{walk.name}  <span className="badge badge-primary badge-pill">{walk.distance} K</span></li></Link>
                   </ul>
 
 

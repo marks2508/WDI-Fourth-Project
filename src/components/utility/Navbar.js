@@ -14,7 +14,7 @@ const Navbar = ({ history }) => {
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
           {/* { Auth.isAuthenticated() && <Link to="/dogs/new" className="nav-item nav-link"><button className="btn btn-success">Add a dog</button></Link>} */}
-          <Link to="/" className="nav-item nav-link active"><button className="btn btn-info">Home</button></Link>
+          { Auth.isAuthenticated() && <Link to="/profile" className="nav-item nav-link active"><button className="btn btn-info">Home</button></Link>}
         </div>
         <div className="navbar-nav ml-md-auto">
           { !Auth.isAuthenticated() && <Link to="/login" className="nav-item nav-link ml-auto"><button className="btn btn-primary">Login</button></Link>}

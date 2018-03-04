@@ -13,7 +13,7 @@ class WalksShow extends React.Component {
 
   componentDidMount() {
     Axios
-      .get(`/api/walks/${this.props.match.params.id}`, {
+      .get(`/api/dogs/:dogId/walks/${this.props.match.params.id}`, {
         headers: {Authorization: `Bearer ${Auth.getToken()}`}
       })
       .then(res => this.setState({walk: res.data}, () => console.log(this.state)))
@@ -28,9 +28,10 @@ class WalksShow extends React.Component {
           <h2>Distance: {this.state.walk.distance}</h2>
           <h2>Duration: {this.state.walk.time}</h2>
         </div>
-        <BackButton />
-        {/* <GoogleMap */}
-
+        <div>
+          <BackButton />
+          <GoogleMap />
+        </div>
       </main>
     );
   }
