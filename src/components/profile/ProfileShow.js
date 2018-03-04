@@ -1,9 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Axios from 'axios';
-// import BackButton from '../../lib/Auth';
 import Auth from '../../lib/Auth';
-import GoogleMap from '../maps/GoogleMaps';
 
 class ProfileShow extends React.Component {
   state = {
@@ -22,34 +20,31 @@ class ProfileShow extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>User: {this.state.user.name}</h2>
-        {/* <BackButton /> */}
-        <Link to="/dogs/new"><button className="btn btn-primary">Add a dog</button></Link>
-
-        {/* <Link to={`/dogs/${this.state.user.dogs.id}/walks`}><button className="btn btn-primary">Add a walk</button></Link> */}
-        <div className="container">
-          <div className="row">
-            <div className="col-md-4">
-              {this.state.user.dogs.map((dog) => (
-                <div key={dog.id}>
-                  <h1>Dog: {dog.name}</h1>
-                  <h2>Breed: {dog.breed}</h2>
-                  <h2>Age: {dog.age}</h2>
-                  <h2>Sex: {dog.sex}</h2>
-                  <img scr={dog.image} />
-                  <Link to={`/dogs/${dog.id}`}><button>Walk log for {dog.name}</button></Link>
-                  <Link to={`dogs/${dog.id}/walks`}><button>Add walk</button></Link>
-                </div>
-              ))}
-              {/* <p>Date:
-                <input id="txtDate" type="text" onClick="getDate()"></input>
-              </p> */}
-              <GoogleMap />
+      <div className="container">
+        <div className="row">
+          {this.state.user.dogs.map((dog) => (
+            <div key={dog.id} className="card col-md-6">
+              <img className="card-img-top" src="https://vignette.wikia.nocookie.net/dogs-cats/images/6/66/Puggle_puppy.jpg/revision/latest?cb=20091227090011" alt="Card image cap" />
+              <div className="card-body">
+                <h5 className="card-title">{dog.name}</h5>
+                <p className="card-text">{dog.breed}</p>
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item"><strong>Age: </strong>{dog.age}</li>
+                <li className="list-group-item">{dog.name} is {dog.sex}</li>
+              </ul>
+              <div className="card-body">
+                <Link to={`/dogs/${dog.id}`}><a className="card-link">Walk log for {dog.name}</a></Link>
+                <Link to={`dogs/${dog.id}/walks`}><a className="card-link">Add a walk</a></Link>
+                <Link to="/dogs/new"><button className="btn btn-primary">Add a dog</button></Link>
+              </div>
             </div>
-          </div>
+          ))}
+          
+          <h1>Hello</h1>
         </div>
       </div>
+
     );
   }
 }

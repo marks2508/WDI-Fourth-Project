@@ -1,14 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Axios from 'axios';
-// import BackButton from '../../lib/Auth';
+import BackButton from '../utility/BackButton';
 import Auth from '../../lib/Auth';
 import _ from 'lodash';
 
 class DogsShow extends React.Component {
   state = {
     dog: {},
-    date: ''
+    date: '',
+    distance: '',
+    target: 10,
+    overOrUnder: ''
   }
   componentDidMount() {
     Axios
@@ -27,7 +30,6 @@ class DogsShow extends React.Component {
   }
 
   handleDateChange = ({ target: { value } }) => {
-
     this.setState(prevState => {
       const newState = prevState;
       newState.date = value;
@@ -39,6 +41,14 @@ class DogsShow extends React.Component {
     const regex = new RegExp(this.state.date, 'i');
     const filteredArray = _.filter(this.state.dog.walks, (walk) => regex.test(walk.date));
     if( this.state.date ){
+      const total = Object.values(filteredArray).reduce((t, n) => t + n.distance, 0);
+      const totalDistance = total.toFixed(1);
+      this.setState({distance: totalDistance});
+      if (this.state.target > this.state.distance) {
+        this.setState({overOrUnder: 'got enough exercise'});
+      } else {
+        this.setState({overOrUnder: 'did not get enough exercise'});
+      }
       return filteredArray;
     } else {
       return this.state.dog.walks;
@@ -54,8 +64,10 @@ class DogsShow extends React.Component {
         <main>
           <div className="profile">
             <h1>{ this.state.dog.name }</h1>
+            <h1>{this.state.distance}</h1>
+            <h2>{this.state.overOrUnder}</h2>
             <Link to={`/dogs/${this.state.dog.id}/walks`}>Add walk for { this.state.dog.name}</Link>
-
+            <BackButton />
             <h2>{ this.state.dog.name } Walk log</h2>
             <input name="date" value={this.state.date} onChange={this.handleDateChange} type="date" />
             <ul>
