@@ -45,11 +45,10 @@ class DogsShow extends React.Component {
       const total = Object.values(filteredArray).reduce((t, n) => t + n.distance, 0);
       const totalDistance = (total * 2).toFixed(1);
       this.setState({distance: totalDistance});
-      console.log(filteredArray.length);
       if (this.state.target > this.state.distance) {
-        this.setState({overOrUnder: 'got enough exercise'});
+        this.setState({overOrUnder: 'got enough exercise 😀'});
       } else {
-        this.setState({overOrUnder: 'did not get enough exercise'});
+        this.setState({overOrUnder: 'did not get enough exercise 😟'});
       }
       this.setState({ filteredWalks: filteredArray});
     } else {
@@ -85,7 +84,7 @@ class DogsShow extends React.Component {
               </div>
             </div>
             {this.state.filteredWalks.length > 0 && <div className="row">
-              <h1 className="col-md-8">{this.state.dog.name} walked {this.state.distance} kilometers in total<br />{this.state.dog.name}  {this.state.overOrUnder}</h1>
+              <h2 className="col-md-8">{this.state.dog.name} walked {this.state.distance} kilometers in total<br />{this.state.dog.name}  {this.state.overOrUnder}</h2>
               { this.state.dog.name && this.state.filteredWalks.map((walk) => (
                 <div key={walk.id} className="col-md-8 mb-8">
                   <ul className="list-group">
@@ -94,6 +93,10 @@ class DogsShow extends React.Component {
                 </div>
               ))}
             </div>}
+            {this.state.filteredWalks.length === 0 && <div className="row">
+              <h2 className="col-md-8">{this.state.dog.name} did not get walked 🙁</h2>
+            </div>
+            }
           </div>
         </main>
       </section>

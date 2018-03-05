@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5, p {
+  font-family: 'Cardo', serif;
+}
+
 .google-map {
   height: 100vh;
 }
@@ -7,6 +11,7 @@
 }
 
 .login {
+  font-family: 'Cardo', serif;
   margin: 300px auto 0;
   background-color: #EDEDED;
   background-image: url("http://dogtraining.com.au/wp-content/uploads/2016/11/54_2383_Cute-Puppies-puppies-16094619-1280-800.jpg");
@@ -25,6 +30,7 @@
 }
 
 .card {
+  font-family: 'Cardo', serif;
   outline: none;
   margin-top: 100px;
   margin-right: 70px;
@@ -38,6 +44,7 @@ body {
 }
 
 .dogsForm {
+  font-family: 'Cardo', serif;
   margin: 0 auto;
   padding-top: 10px;
   padding-bottom: 20px;
@@ -74,6 +81,7 @@ a {
 }
 
 button {
+  font-family: 'Cardo', serif;
   margin: 0 2px 20px 2px;
   background: none;
   border: none;
@@ -103,10 +111,23 @@ button {
 }
 
 .walks-show {
+  font-family: 'Cardo', serif;
   margin-top: 100px;
 }
 
 .image-preview {
   height: 300px;
   width: auto;
+}
+
+.card-img-top {
+  border-radius: 10px;
+}
+
+.col-lg-4 {
+  font-family: 'Cardo', serif;
+}
+
+.row {
+  font-family: 'Cardo', serif;
 }
