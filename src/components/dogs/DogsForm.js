@@ -61,7 +61,6 @@ function DogsForm({history, handleSubmit, handleChange, dog, handleImageUpload})
             buttonClass="main-button"
             onSuccess={handleImageUpload}
           />
-
         </div>
         <button className="btn btn-success">Save</button>
         <br />

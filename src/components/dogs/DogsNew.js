@@ -5,7 +5,7 @@ import Auth from '../../lib/Auth';
 
 class DogsNew extends React.Component {
   state = {
-    dogs: {
+    dog: {
       name: '',
       breed: '',
       age: '',
@@ -16,15 +16,15 @@ class DogsNew extends React.Component {
   }
 
   handleChange = ({target: {name, value}}) => {
-    const dogs = Object.assign({}, this.state.dogs, {[name]: value});
+    const dog = Object.assign({}, this.state.dog, {[name]: value});
     const errors = Object.assign({}, this.state.errors, {[name]: ''});
-    this.setState({dogs, errors});
+    this.setState({dog, errors});
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     Axios
-      .post('/api/dogs', this.state.dogs, {
+      .post('/api/dogs', this.state.dog, {
         headers: {Authorization: `Bearer ${Auth.getToken()}`}
       })
       .then(() => this.props.history.push('/profile'))
@@ -32,8 +32,9 @@ class DogsNew extends React.Component {
   }
 
   handleImageUpload = result => {
-    const dogs = Object.assign({}, this.state.dogs, { image: result.filesUploaded[0].url});
-    this.setState({ dogs });
+    console.log(result.filesUploaded[0].url);
+    const dog = Object.assign({}, this.state.dog, { image: result.filesUploaded[0].url});
+    this.setState({ dog });
   }
 
   render() {
@@ -46,7 +47,7 @@ class DogsNew extends React.Component {
               history={this.props.history}
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
-              dog={this.state.dogs}
+              dog={this.state.dog}
               errors={this.state.errors}
               uploadImage={this.uploadImage}
             />
