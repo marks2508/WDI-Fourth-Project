@@ -31,10 +31,9 @@ class WalksShow extends React.Component {
             />
           </div>
           <div className="walks-show col-md-6">
-            <h1>{this.state.walk.name}</h1>
+            <h2>{this.state.walk.name}</h2>
             <h2><span className="distance-walkshow">Date of walk: </span>{this.state.walk.date}</h2>
             <h2><span className="distance-walkshow">Distance: </span>{this.state.walk.distance}km</h2>
-            <h2><span className="distance-walkshow">Estimated time: </span>{this.state.walk.duration}</h2>
             <BackButton history={history} />
           </div>
         </div>

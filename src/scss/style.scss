@@ -67,6 +67,7 @@ a {
 }
 
 .navbar-default {
+  color: red;
   background-color:teal;
   background-image: none;
   background-repeat: no-repeat;
@@ -100,6 +101,7 @@ button {
 .main-button {
   background: #F31812;
   border: 1px solid lighten(#F31812, 10%);
+  border-radius: 5px;
 
   &:hover {
     background: darken(#F31812, 10%);
@@ -130,4 +132,17 @@ button {
 
 .row {
   font-family: 'Cardo', serif;
+}
+
+.img-fluid {
+  border-radius: 10px;
+}
+
+.badge {
+  font-size: 40px;
+}
+
+.list-group-item  {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

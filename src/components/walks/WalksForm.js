@@ -32,6 +32,7 @@ function WalksForm({ handleSubmit, handleGooglePlace, handleChange, distance, du
             className="form-group"
             onPlaceSelected={ place => handleGooglePlace(place, 'start') }
             types={[]}
+            componentRestrictions={{country: 'uk'}}
           />
         </div>
         <div className="form-group dogsForm">
@@ -40,10 +41,12 @@ function WalksForm({ handleSubmit, handleGooglePlace, handleChange, distance, du
             className="form-group"
             onPlaceSelected={ place => handleGooglePlace(place, 'end') }
             types={[]}
+            componentRestrictions={{country: 'uk'}}
           />
         </div>
         <div className="form-group dogsForm">
           <label htmlFor="date">Was the journey a return trip</label>
+          <br />
           <input
             type="checkbox"
             name="return"
