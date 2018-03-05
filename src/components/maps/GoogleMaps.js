@@ -24,17 +24,14 @@ class GoogleMap extends React.Component {
 
   componentDidUpdate() {
     this.bounds = new google.maps.LatLngBounds();
-
     if (this.props.start.lat && this.props.start.lng) {
       this.start.setPosition(this.props.start);
       this.bounds.extend(this.props.start);
     }
-
     if(this.props.end.lat && this.props.end.lng) {
       this.end.setPosition(this.props.end);
       this.bounds.extend(this.props.end);
     }
-
     if (this.props.start.lat && this.props.start.lng && this.props.end.lat && this.props.end.lng) {
       this.map.fitBounds(this.bounds);
       // generate the route between
@@ -43,7 +40,6 @@ class GoogleMap extends React.Component {
     } else if (this.props.end.lat && this.props.end.lng) {
       this.map.setCenter(this.props.end);
     }
-
     const directionsService = new google.maps.DirectionsService();
     const directionsDisplay = new google.maps.DirectionsRenderer();
     directionsDisplay.setMap(this.map);
@@ -66,15 +62,12 @@ class GoogleMap extends React.Component {
       zoom: 14,
       styles: mapStyles
     });
-
     this.start = new google.maps.Marker({
       map: this.map
     });
-
     this.end = new google.maps.Marker({
       map: this.map
     });
-
   }
 
   componentWillUnmount() {
@@ -82,7 +75,6 @@ class GoogleMap extends React.Component {
     this.marker = null;
     this.map = null;
   }
-
 }
 
 export default GoogleMap;

@@ -1,4 +1,4 @@
-  import React from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import Axios from 'axios';
 import BackButton from '../utility/BackButton';
@@ -12,8 +12,10 @@ class DogsShow extends React.Component {
     distance: '',
     target: 10,
     overOrUnder: '',
+    back: '',
     filteredWalks: []
   }
+
   componentDidMount() {
     Axios
       .get(`/api/dogs/${this.props.match.params.id}`, { headers: { 'Authorization': `Bearer ${Auth.getToken()}`}})
@@ -37,7 +39,6 @@ class DogsShow extends React.Component {
 
   filterDates = () => {
     if (!this.state.dog) return false;
-
     const regex = new RegExp(this.state.date, 'i');
     const filteredArray = _.filter(this.state.dog.walks, (walk) => regex.test(walk.date));
     if( this.state.date ){
@@ -56,14 +57,11 @@ class DogsShow extends React.Component {
     }
   }
 
-
   render() {
     return (
       <section>
-        {/* <BackButton /> */}
         <main>
           <div className="container">
-
             <div className="row my-4">
               <div className="col-lg-8">
                 <img className="img-fluid rounded" src="https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/The-stages-of-puppy-growth.jpg?itok=9ptPJwY8" alt="" />
@@ -76,23 +74,18 @@ class DogsShow extends React.Component {
                 <br />
                 <h1>Pick a day to see log</h1>
                 <input placeholder="Date" className="form-control" name="date" value={this.state.date} onChange={this.handleDateChange} type="date" />
-
                 <br />
                 <br />
                 <BackButton />
-
               </div>
             </div>
-
             <div className="card text-white bg-secondary my-4 text-center">
               <div className="card-body">
-                <p className="text-white m-0">  </p>
+                <p className="text-white m-0"></p>
               </div>
             </div>
-
             {this.state.filteredWalks.length > 0 && <div className="row">
               <h1 className="col-md-8">{this.state.dog.name} walked {this.state.distance} kilometers in total<br />{this.state.dog.name}  {this.state.overOrUnder}</h1>
-
               { this.state.dog.name && this.state.filteredWalks.map((walk) => (
                 <div key={walk.id} className="col-md-8 mb-8">
                   <ul className="list-group">
@@ -101,26 +94,7 @@ class DogsShow extends React.Component {
                 </div>
               ))}
             </div>}
-
-          {/* // <div className="profile">
-          //   <h1>{ this.state.dog.name }</h1>
-          //   <h1>{this.state.distance}</h1>
-          //   <h2>{this.state.overOrUnder}</h2>
-          //   <Link to={`/dogs/${this.state.dog.id}/walks`}>Add walk for { this.state.dog.name}</Link>
-          //   <h2>{ this.state.dog.name } Walk log</h2>
-          //   <input name="date" value={this.state.date} onChange={this.handleDateChange} type="date" />
-          //   <ul>
-          //     { this.state.dog.name && walks.map(walk => */}
-          {/* //       <li key={walk.id}>
-          //         <p>{ walk.name }</p>
-          //         <p>Duration: { walk.duration}</p>
-          //         <p>Distance: { walk.distance}km</p>
-          //         <p>Date: { walk.date }</p>
-          //       </li>
-          //     )}
-          //   </ul>
-          // </div> */}
-        </div>
+          </div>
         </main>
       </section>
     );

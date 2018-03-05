@@ -10,7 +10,6 @@
   margin: 300px auto 0;
   background-color: #EDEDED;
   background-image: url("http://dogtraining.com.au/wp-content/uploads/2016/11/54_2383_Cute-Puppies-puppies-16094619-1280-800.jpg");
-
   padding-top: 10px;
   padding-bottom: 20px;
   padding-left: 20px;
@@ -21,17 +20,10 @@
   box-shadow:0 1px 0 #cfcfcf;
 }
 
-.profile {
-}
-
-.card-img-top {
-  // width: 100px;
-  // height: 100px;
-}
-
 .card-link {
   padding-right: 40px;
 }
+
 .card {
   outline: none;
   margin-top: 100px;
@@ -43,7 +35,6 @@ body {
   background-size: cover;
   height: auto;
   width: auto;
-
 }
 
 .dogsForm {
@@ -59,6 +50,7 @@ body {
 .btn btn-primary btn-lg {
   color: white;
 }
+
 a {
   color: white;
 }
@@ -66,6 +58,7 @@ a {
 .BackButton {
   margin: 40px;
 }
+
 .navbar-default {
   background-color:teal;
   background-image: none;
@@ -79,6 +72,7 @@ a {
 .dog-new-title {
   margin-top: 100px;
 }
+
 button {
   margin: 0 2px 20px 2px;
   background: none;
@@ -102,4 +96,17 @@ button {
   &:hover {
     background: darken(#F31812, 10%);
   }
+}
+
+.distance-walkshow {
+  font-size: 18px;
+}
+
+.walks-show {
+  margin-top: 100px;
+}
+
+.image-preview {
+  height: 300px;
+  width: auto;
 }

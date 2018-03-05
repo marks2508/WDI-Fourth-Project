@@ -11,7 +11,6 @@ function walksIndex(req, res, next) {
 function walksCreate(req, res, next) {
   req.body.date     = new Date();
   req.body.distance = parseFloat(req.body.distance);
-
   User
     .findById(req.currentUser._id)
     .exec()
@@ -19,7 +18,6 @@ function walksCreate(req, res, next) {
       if(!user) return res.notFound();
       const walk = user.walks.create(req.body);
       user.walks.push(walk);
-
       user.save();
       return walk;
     })
@@ -33,7 +31,6 @@ function walksShow(req, res, next) {
     .exec()
     .then((user) => {
       if(!user) return res.notFound();
-
       const dog = user.dogs.id(req.params.dogId);
       const walk = dog.walks.id(req.params.walkId);
       res.json(walk);
@@ -41,7 +38,6 @@ function walksShow(req, res, next) {
     .catch(next);
 }
 
-// TODO update this route
 function walksUpdate(req, res, next) {
   User
     .findByIdAndUpdate(req.params.id, req.body, {new: true})
@@ -55,7 +51,6 @@ function walksDelete(req, res, next) {
     .exec()
     .then((user) => {
       if(!user) return res.notFound();
-
       const walk = user.walks.id(req.params.id);
       walk.remove();
       return user.save();

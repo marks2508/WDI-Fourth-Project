@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Autocomplete from 'react-google-autocomplete';
 import BackButton from '../utility/BackButton';
 
@@ -54,7 +53,6 @@ function WalksForm({ handleSubmit, handleGooglePlace, handleChange, distance, du
         <br />
         <br />
         <BackButton history={history} />
-
       </form>
     </div>
   );

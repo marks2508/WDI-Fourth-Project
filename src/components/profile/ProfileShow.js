@@ -10,13 +10,13 @@ class ProfileShow extends React.Component {
       dogs: []
     }
   }
+
   componentDidMount() {
     Axios
       .get(`/api/users/${Auth.getPayload().userId}`)
       .then(res => this.setState({user: res.data}, () => console.log(this.state.user.dogs[0].id)))
       .catch(err => console.log(err));
   }
-
 
   render() {
     return (
@@ -39,10 +39,8 @@ class ProfileShow extends React.Component {
               </div>
             </div>
           ))}
-
         </div>
       </div>
-
     );
   }
 }

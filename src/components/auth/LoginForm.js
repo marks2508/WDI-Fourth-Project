@@ -6,7 +6,6 @@ const LoginForm = ({handleChange, handleSubmit, user}) => {
       <div className="row">
         <div className="col-md-6 login">
           <form onSubmit={handleSubmit}>
-
             <div className="form-group">
               <input
                 type="text"

@@ -8,4 +8,5 @@ const BackButton = ({history}) => {
     </div>
   );
 };
+
 export default withRouter(BackButton);

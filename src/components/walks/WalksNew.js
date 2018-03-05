@@ -1,10 +1,8 @@
 /* global google */
-
 import React from 'react';
 import Axios from 'axios';
 import WalksForm from './WalksForm';
 import Auth from '../../lib/Auth';
-import mapStyles from '../config/mapStyles';
 import GoogleMap from '../maps/GoogleMaps';
 
 
@@ -20,23 +18,6 @@ class WalksNew extends React.Component {
     },
     errors: {}
   }
-
-  // componentDidMount() {
-  //   this.map = new google.maps.Map(this.mapCanvas, {
-  //     center: { lat: 51.5085300, lng: -0.1257400 },
-  //     zoom: 14,
-  //     styles: mapStyles
-  //   });
-  //   this.marker = new google.maps.Marker({
-  //     map: this.map,
-  //     position: this.state.center
-  //   });
-  // }
-  // componentWillUnmount() {
-  //   this.map = null;
-  //   this.marker = null;
-  //   this.map = null;
-  // }
 
   handleChange = ({ target: { name, value } }) => {
     const walk = Object.assign({}, this.state.walk, { [name]: value });
@@ -73,7 +54,6 @@ class WalksNew extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     Axios
       .post(`/api/dogs/${this.props.match.params.id}/walks`, this.state.walk, { headers: {'Authorization': `Bearer ${Auth.getToken()}` }})
       .then(() => this.props.history.push(`/dogs/${this.props.match.params.id}`))
@@ -81,8 +61,6 @@ class WalksNew extends React.Component {
   }
 
   render() {
-    console.log('rending walksShow');
-    
     return (
       <div className="container">
         <div className="row">

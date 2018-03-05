@@ -7,7 +7,8 @@ const walkSchema = mongoose.Schema({
   distance: { type: Number },
   duration: {type: String},
   name: {type: String},
-  date: { type: String }
+  date: { type: String },
+  return: {type: String}
 });
 
 walkSchema.set('toJSON', {
@@ -19,7 +20,6 @@ walkSchema.set('toJSON', {
   }
 });
 
-
 const dogSchema = mongoose.Schema({
   name: {type: String, required: 'Please enter a name'},
   breed: {type: String, required: 'Please select a breed'},
@@ -28,7 +28,6 @@ const dogSchema = mongoose.Schema({
   image: {type: String, required: 'Load a photo'},
   walks: [walkSchema]
 });
-
 
 dogSchema.set('toJSON', {
   getters: true,
@@ -73,7 +72,6 @@ userSchema.pre('validate', function checkPassword(next) {
   }
   next();
 });
-
 
 userSchema.pre('save', function hashPassword(next) {
   if(this.isModified('password')) {

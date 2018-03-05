@@ -54,8 +54,8 @@ class DogsNew extends React.Component {
           </div>
         </div>
       </div>
-
     );
   }
 }
+
 export default DogsNew;

@@ -27,16 +27,17 @@ class Login extends React.Component {
       })
       .catch(err => this.setState({errors: err.response.data.errors}));
   }
+  
   render() {
     return (
       <main>
-      <LoginForm
-        user={this.state.user}
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-        errors={this.state.errors}
-      />
-    </main>
+        <LoginForm
+          user={this.state.user}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          errors={this.state.errors}
+        />
+      </main>
     );
   }
 }

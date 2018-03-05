@@ -1,12 +1,8 @@
 const router = require('express').Router();
-
 const walks = require('../controllers/walks');
 const dogs = require('../controllers/dogs');
 const users = require('../controllers/users');
-// const profile = require('../controllers/profile');
-// const exercise = require('../controllers/exercise');
 const auth = require('../controllers/auth');
-
 const secureRoute = require('../lib/secureRoute');
 
 router.route('/dogs')
@@ -28,7 +24,6 @@ router.route('/dogs/:dogId/walks/:walkId')
 router.route('/users/:id')
   .get(users.show)
   .put(users.update);
-
 
 router.route('/register')
   .post(auth.register);

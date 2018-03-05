@@ -7,7 +7,6 @@ function dogsCreate(req, res, next) {
     .exec()
     .then(user => {
       if(!user) return res.notFound();
-
       const dog = user.dogs.create(req.body);
       user.dogs.push(dog);
       return user.save()
@@ -48,19 +47,15 @@ function dogsDelete(req, res, next) {
 }
 
 function dogsWalksCreate(req, res, next) {
-  // req.body.date     = new Date();
   req.body.distance = parseFloat(req.body.distance);
-
   User
     .findById(req.currentUser._id)
     .exec()
     .then(user => {
       if(!user) return res.notFound();
-
       const dog  = user.dogs.id(req.params.id);
       const walk = dog.walks.create(req.body);
       dog.walks.push(walk);
-
       user.save();
       return walk;
     })

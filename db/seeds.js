@@ -3,17 +3,15 @@ mongoose.Promise = require('bluebird');
 
 const { db, env } = require('../config/environment');
 const User      = require('../models/user');
-// const Dog = require('../models/dog');
 
 User.collection.drop();
-// Dog.collection.drop();
 
 const dogData = [
   {
     name: 'Boris',
     breed: 'Puggle',
     age: 6,
-    sex: 'male',
+    sex: 'Male',
     image: 'http://cdn3-www.dogtime.com/assets/uploads/gallery/puggle-dog-breed-picture-gallery/face-3.jpg'
   }
 ];

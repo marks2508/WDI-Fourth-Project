@@ -44,14 +44,17 @@ function DogsForm({history, handleSubmit, handleChange, dog, handleImageUpload})
         </div>
         <div className="form-group">
           <label htmlFor="sex">Sex</label>
-          <input
-            type="text"
+          <select
             className="form-control"
             id="sex"
             name="sex"
             value={dog.sex}
             onChange={handleChange}
-          />
+          >
+            <option value="" disabled>Please select</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
         </div>
         <div className="form-group">
           <ReactFilestack
@@ -69,7 +72,7 @@ function DogsForm({history, handleSubmit, handleChange, dog, handleImageUpload})
       </form>
       { dog.image && <div className="image-tile col-md-6">
         <h2>Image Preview</h2>
-        <img src={dog.image} className="img-responsive" />
+        <img src={dog.image} className="image-preview" />
       </div> }
     </div>
   );

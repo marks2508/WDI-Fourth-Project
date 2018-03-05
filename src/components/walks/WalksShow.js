@@ -1,11 +1,8 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import BackButton from '../utility/BackButton';
 import Auth from '../../lib/Auth';
 import GoogleMap from '../maps/GoogleMaps';
-import WalksForm from './WalksForm';
-
 
 class WalksShow extends React.Component {
   state = {
@@ -22,6 +19,7 @@ class WalksShow extends React.Component {
       .then(console.log(this.props.match.params.id))
       .catch(err => console.log(err));
   }
+
   render() {
     return (
       <div className="container">
@@ -32,17 +30,11 @@ class WalksShow extends React.Component {
               end={this.state.walk.end}
             />
           </div>
-          <div className="col-md-6">
-            {this.state.walk.name}
-            {/* <WalksForm
-              handleSubmit={this.handleSubmit}
-              handleGooglePlace={this.handleGooglePlace}
-              handleChange={this.handleChange}
-              errors={this.state.errors}
-              distance={this.state.walk.distance}
-              duration={this.state.walk.duration}
-              name={this.state.walk.name}
-            /> */}
+          <div className="walks-show col-md-6">
+            <h1>{this.state.walk.name}</h1>
+            <h2><span className="distance-walkshow">Date of walk: </span>{this.state.walk.date}</h2>
+            <h2><span className="distance-walkshow">Distance: </span>{this.state.walk.distance}km</h2>
+            <h2><span className="distance-walkshow">Estimated time: </span>{this.state.walk.duration}</h2>
             <BackButton history={history} />
           </div>
         </div>
@@ -52,7 +44,3 @@ class WalksShow extends React.Component {
 }
 
 export default WalksShow;
-
-{/* <h2>Name of walk: {this.state.walk.name}</h2>
-<h2>Distance: {this.state.walk.distance}</h2>
-<h2>Duration: {this.state.walk.time}</h2> */}

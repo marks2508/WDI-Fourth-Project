@@ -13,10 +13,12 @@ class Register extends React.Component {
       passwordConfirmation: ''
     }
   };
+
   handleChange = ({target: {name, value}}) => {
     const user = Object.assign({}, this.state.user, {[name]: value});
     this.setState({user});
   }
+
   handleSubmit = (e) => {
     e.preventDefault();
     Axios
@@ -27,6 +29,7 @@ class Register extends React.Component {
       })
       .catch(err => console.log(err));
   }
+
   render() {
     return (
       <RegisterForm
