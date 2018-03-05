@@ -29,7 +29,6 @@ class GoogleMap extends React.Component {
     if (this.props.start.lat && this.props.start.lng && this.props.end.lat && this.props.end.lng) {
       this.start.setMap(null);
       this.end.setMap(null);
-      
       this.map.fitBounds(this.bounds);
       const directionsService = new google.maps.DirectionsService();
       const directionsDisplay = new google.maps.DirectionsRenderer();
@@ -39,19 +38,16 @@ class GoogleMap extends React.Component {
         destination: this.props.end,
         travelMode: 'WALKING'
       };
-
       directionsService.route(request, function(result, status) {
         if (status === 'OK') {
           directionsDisplay.setDirections(result);
         }
       });
-      // generate the route between
     } else if (this.props.start.lat && this.props.start.lng) {
       this.map.setCenter(this.props.start);
     } else if (this.props.end.lat && this.props.end.lng) {
       this.map.setCenter(this.props.end);
     }
-
   }
 
   componentDidMount() {

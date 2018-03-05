@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Auth from '../../lib/Auth';
 
+
 const Navbar = ({ history }) => {
   function logout(e) {
     e.preventDefault();
@@ -13,7 +14,7 @@ const Navbar = ({ history }) => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
-          { Auth.isAuthenticated() && <Link to="/profile" className="nav-item nav-link">Home</Link>}
+          { Auth.isAuthenticated() && <Link to="/profile" className="nav-item nav-link"><i className="fab fa-accusoft"></i>Home</Link>}
         </div>
         <div className="navbar-nav ml-md-auto">
           { Auth.isAuthenticated() && <Link to="/dogs/new" className="nav-item nav-link">Add a dog</Link>}
