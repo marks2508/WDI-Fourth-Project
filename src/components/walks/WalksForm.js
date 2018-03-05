@@ -42,6 +42,14 @@ function WalksForm({ handleSubmit, handleGooglePlace, handleChange, distance, du
             types={[]}
           />
         </div>
+        <div className="form-group dogsForm">
+          <label htmlFor="date">Was the journey a return trip</label>
+          <input
+            type="checkbox"
+            name="return"
+            onChange={handleChange}
+          />
+        </div>
         <div className="form-group">
           <label  className="exampleFormControlInput1"htmlFor="distance">Distance: {distance} </label>
         </div>

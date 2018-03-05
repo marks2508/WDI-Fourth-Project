@@ -14,13 +14,24 @@ class WalksNew extends React.Component {
       distance: '',
       duration: '',
       name: '',
-      date: ''
+      date: '',
+      return: ''
     },
     errors: {}
   }
 
-  handleChange = ({ target: { name, value } }) => {
-    const walk = Object.assign({}, this.state.walk, { [name]: value });
+  handleChange = ({ target }) => {
+    let walk = {};
+    if (target.name === 'return') {
+      if (target.checked) {
+        walk = Object.assign({}, this.state.walk, { return: true });
+      } else {
+        walk = Object.assign({}, this.state.walk, { return: false });
+      }
+      this.calculateDistance();
+    } else {
+      walk = Object.assign({}, this.state.walk, { [target.name]: target.value });
+    }
     this.setState({ walk });
   }
 
@@ -48,7 +59,13 @@ class WalksNew extends React.Component {
   }
 
   callback = (response) => {
-    const walk = Object.assign({}, this.state.walk, {distance: response.rows[0].elements[0].distance.text , duration: response.rows[0].elements[0].duration.text});
+    let distance = null;
+    if (this.state.walk.return) {
+      distance = parseFloat(response.rows[0].elements[0].distance.text) * 2;
+    } else {
+      distance = parseFloat(response.rows[0].elements[0].distance.text);
+    }
+    const walk = Object.assign({}, this.state.walk, {distance});
     this.setState({walk});
   }
 
