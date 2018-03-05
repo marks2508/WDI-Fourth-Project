@@ -9,17 +9,16 @@ import WalksForm from './WalksForm';
 
 class WalksShow extends React.Component {
   state = {
-    user: {
-      dog: {
-        walks: {}
-      }
-    }
+    walk: {}
   }
 
   componentDidMount() {
     Axios
-      .get(`/api/dogs/${this.props.match.params.id}/walks/`, { headers: {Authorization: `Bearer ${Auth.getToken()}`}})
-      .then(res => this.setState({dog: res.data}))
+      .get(`/api/dogs/${this.props.match.params.dogId}/walks/${this.props.match.params.walkId}`, { headers: {Authorization: `Bearer ${Auth.getToken()}`}})
+      .then(res => {
+        console.log(res);
+        this.setState({walk: res.data});
+      })
       .then(console.log(this.props.match.params.id))
       .catch(err => console.log(err));
   }
@@ -28,7 +27,10 @@ class WalksShow extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6">
-            <GoogleMap />
+            <GoogleMap
+              start={this.state.walk.start}
+              end={this.state.walk.end}
+            />
           </div>
           <div className="col-md-6">
             {this.state.walk.name}

@@ -1,4 +1,4 @@
-import React from 'react';
+  import React from 'react';
 import {Link} from 'react-router-dom';
 import Axios from 'axios';
 import BackButton from '../utility/BackButton';
@@ -11,7 +11,8 @@ class DogsShow extends React.Component {
     date: '',
     distance: '',
     target: 10,
-    overOrUnder: ''
+    overOrUnder: '',
+    filteredWalks: []
   }
   componentDidMount() {
     Axios
@@ -30,15 +31,13 @@ class DogsShow extends React.Component {
       .catch(err => console.log(err));
   }
 
-  handleDateChange = ({ target: { value } }) => {
-    this.setState(prevState => {
-      const newState = prevState;
-      newState.date = value;
-      return newState;
-    }, () => this.filterDates());
+  handleDateChange = (e) => {
+    this.setState({ date: e.target.value }, this.filterDates);
   }
 
   filterDates = () => {
+    if (!this.state.dog) return false;
+
     const regex = new RegExp(this.state.date, 'i');
     const filteredArray = _.filter(this.state.dog.walks, (walk) => regex.test(walk.date));
     if( this.state.date ){
@@ -51,15 +50,14 @@ class DogsShow extends React.Component {
       } else {
         this.setState({overOrUnder: 'did not get enough exercise'});
       }
-      return filteredArray;
+      this.setState({ filteredWalks: filteredArray});
     } else {
-      return this.state.dog.walks;
+      this.setState({ filteredWalks: this.state.dog.walks});
     }
   }
 
 
   render() {
-    const walks = this.filterDates();
     return (
       <section>
         {/* <BackButton /> */}
@@ -92,20 +90,17 @@ class DogsShow extends React.Component {
               </div>
             </div>
 
-            <div className="row">
+            {this.state.filteredWalks.length > 0 && <div className="row">
               <h1 className="col-md-8">{this.state.dog.name} walked {this.state.distance} kilometers in total<br />{this.state.dog.name}  {this.state.overOrUnder}</h1>
 
-              { this.state.dog.name && walks.map((walk) => (
+              { this.state.dog.name && this.state.filteredWalks.map((walk) => (
                 <div key={walk.id} className="col-md-8 mb-8">
                   <ul className="list-group">
                     <Link to={`/dogs/${this.state.dog.id}/walks/${walk.id}`}><li className="list-group-item d-flex justify-content-between align-items-center">{walk.date}<br />{walk.name}  <span className="badge badge-primary badge-pill">Distance: {walk.distance} Kms</span></li></Link>
                   </ul>
-
-
-
-            </div>
-          ))}
-          </div>
+                </div>
+              ))}
+            </div>}
 
           {/* // <div className="profile">
           //   <h1>{ this.state.dog.name }</h1>

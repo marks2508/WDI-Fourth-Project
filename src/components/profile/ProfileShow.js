@@ -34,8 +34,8 @@ class ProfileShow extends React.Component {
                 <li className="list-group-item">{dog.name} is {dog.sex}</li>
               </ul>
               <div className="card-body">
-                <Link to={`/dogs/${dog.id}`}><a className="card-link">Walk log for {dog.name}</a></Link>
-                <Link to={`dogs/${dog.id}/walks`}><a className="card-link">Add a walk</a></Link>
+                <Link to={`/dogs/${dog.id}`} className="card-link">Walk log for {dog.name}</Link>
+                <Link to={`dogs/${dog.id}/walks`} className="card-link">Add a walk</Link>
               </div>
             </div>
           ))}

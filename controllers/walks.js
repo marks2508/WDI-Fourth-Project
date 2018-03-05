@@ -34,7 +34,8 @@ function walksShow(req, res, next) {
     .then((user) => {
       if(!user) return res.notFound();
 
-      const walk = user.walks.id(req.params.id);
+      const dog = user.dogs.id(req.params.dogId);
+      const walk = dog.walks.id(req.params.walkId);
       res.json(walk);
     })
     .catch(next);

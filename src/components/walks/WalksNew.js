@@ -81,11 +81,16 @@ class WalksNew extends React.Component {
   }
 
   render() {
+    console.log('rending walksShow');
+    
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-6">
-            <GoogleMap />
+            <GoogleMap
+              start={this.state.walk.start}
+              end={this.state.walk.end}
+            />
           </div>
           <div className="col-md-6">
             <WalksForm
