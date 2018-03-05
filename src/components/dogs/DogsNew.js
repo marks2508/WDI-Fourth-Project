@@ -34,7 +34,7 @@ class DogsNew extends React.Component {
   handleImageUpload = result => {
     console.log(result.filesUploaded[0].url);
     const dog = Object.assign({}, this.state.dog, { image: result.filesUploaded[0].url});
-    this.setState({ dog });
+    this.setState({ dog }, () => console.log('this.state', this.state));
   }
 
   render() {
@@ -49,7 +49,7 @@ class DogsNew extends React.Component {
               handleChange={this.handleChange}
               dog={this.state.dog}
               errors={this.state.errors}
-              uploadImage={this.uploadImage}
+              handleImageUpload={this.handleImageUpload}
             />
           </div>
         </div>

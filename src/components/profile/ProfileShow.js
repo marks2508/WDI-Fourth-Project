@@ -24,7 +24,7 @@ class ProfileShow extends React.Component {
         <div className="row">
           {this.state.user.dogs.map((dog) => (
             <div key={dog.id} className="card col-md-6">
-              <img className="card-img-top" src="https://vignette.wikia.nocookie.net/dogs-cats/images/6/66/Puggle_puppy.jpg/revision/latest?cb=20091227090011" alt="Card image cap" />
+              <img className="card-img-top" src={dog.image} alt="Card image cap" />
               <div className="card-body">
                 <h5 className="card-title">{dog.name}</h5>
                 <p className="card-text">{dog.breed}</p>

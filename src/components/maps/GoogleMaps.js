@@ -43,6 +43,21 @@ class GoogleMap extends React.Component {
     } else if (this.props.end.lat && this.props.end.lng) {
       this.map.setCenter(this.props.end);
     }
+
+    const directionsService = new google.maps.DirectionsService();
+    const directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(this.map);
+    const request = {
+      origin: this.props.start,
+      destination: this.props.end,
+      travelMode: 'WALKING'
+    };
+
+    directionsService.route(request, function(result, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(result);
+      }
+    });
   }
 
   componentDidMount() {
@@ -59,6 +74,7 @@ class GoogleMap extends React.Component {
     this.end = new google.maps.Marker({
       map: this.map
     });
+
   }
 
   componentWillUnmount() {
