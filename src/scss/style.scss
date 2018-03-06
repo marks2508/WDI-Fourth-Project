@@ -8,6 +8,7 @@ h1, h2, h3, h4, h5, p {
 
 .puppy {
   width: 100%;
+  height: calc(100vh - 107px);
 }
 
 .login {
@@ -15,8 +16,6 @@ h1, h2, h3, h4, h5, p {
   color: royalblue;
   margin: 100px auto 0;
   background-color: #EDEDED;
-
-  // background-image: url("http://dogtraining.com.au/wp-content/uploads/2016/11/54_2383_Cute-Puppies-puppies-16094619-1280-800.jpg");
   padding-top: 10px;
   padding-bottom: 20px;
   padding-left: 20px;
