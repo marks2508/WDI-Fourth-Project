@@ -10,8 +10,8 @@ import WalksShow from './components/walks/WalksShow';
 import DogsNew from './components/dogs/DogsNew';
 import DogsShow from './components/dogs/DogsShow';
 import Homepage from './components/utility/Homepage';
-import './scss/style.scss';
 import 'bootstrap-css-only';
+import './scss/style.scss';
 import 'font-awesome/css/font-awesome.css';
 
 

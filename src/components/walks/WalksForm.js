@@ -15,7 +15,7 @@ function WalksForm({ handleSubmit, handleGooglePlace, handleChange, distance, du
             className="form-control"
             name="name"
             onChange={handleChange}
-            placeholder="give your walk a name" />
+            placeholder="Give your walk a name" />
         </div>
         <div className="form-group dogsForm">
           <label htmlFor="date">When was the walk</label>

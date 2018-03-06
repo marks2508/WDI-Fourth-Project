@@ -2,6 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import LoginForm from './LoginForm';
 import Auth from '../../lib/Auth';
+import Homepage from '../utility/Homepage';
 
 class Login extends React.Component {
   state = {
@@ -27,7 +28,7 @@ class Login extends React.Component {
       })
       .catch(err => this.setState({errors: err.response.data.errors}));
   }
-  
+
   render() {
     return (
       <main>
@@ -36,7 +37,7 @@ class Login extends React.Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           errors={this.state.errors}
-        />
+        />  
       </main>
     );
   }

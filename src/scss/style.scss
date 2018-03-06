@@ -12,9 +12,11 @@ h1, h2, h3, h4, h5, p {
 
 .login {
   font-family: 'Cardo', serif;
-  margin: 300px auto 0;
+  color: royalblue;
+  margin: 100px auto 0;
   background-color: #EDEDED;
-  background-image: url("http://dogtraining.com.au/wp-content/uploads/2016/11/54_2383_Cute-Puppies-puppies-16094619-1280-800.jpg");
+
+  // background-image: url("http://dogtraining.com.au/wp-content/uploads/2016/11/54_2383_Cute-Puppies-puppies-16094619-1280-800.jpg");
   padding-top: 10px;
   padding-bottom: 20px;
   padding-left: 20px;
@@ -37,7 +39,6 @@ h1, h2, h3, h4, h5, p {
 }
 
 body {
-  background-color: blue;
   background-size: cover;
   height: auto;
   width: auto;
@@ -73,8 +74,9 @@ a {
   background-repeat: no-repeat;
  }
 
-.nav-item {
-  color: red;
+.navbar-light .navbar-nav .nav-link {
+  font-family: 'Cardo', serif;
+  color: blue;
 }
 
 .dog-new-title {
@@ -145,4 +147,17 @@ button {
 .list-group-item  {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.navIcon {
+  width: 75px;
+  height: 75px;
+}
+
+.logintext {
+  text-align: center;
+}
+
+.logout {
+  text-align: center;
 }

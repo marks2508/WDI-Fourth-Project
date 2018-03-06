@@ -4,6 +4,7 @@ const RegisterForm = ({handleChange, handleSubmit, user}) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="col-md-6 login">
+        <h2 className="logintext">Welcome to Walkies!<br /><br />Please register below: </h2>
         <div className="form-group">
           <input
             type="text"

@@ -5,6 +5,7 @@ const LoginForm = ({handleChange, handleSubmit, user}) => {
     <div className="container">
       <div className="row">
         <div className="col-md-6 login">
+          <h2 className="logintext">Welcome back!<br /><br />Please login to access our site</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <input
