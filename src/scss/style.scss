@@ -3,7 +3,7 @@ h1, h2, h3, h4, h5, p {
 }
 
 .google-map {
-  height: 100vh;
+  height: calc(100vh - 107px);
 }
 
 .puppy {
@@ -59,9 +59,7 @@ body {
   color: white;
 }
 
-a {
-  color: white;
-}
+
 
 .BackButton {
   margin: 40px;
@@ -77,6 +75,8 @@ a {
 .navbar-light .navbar-nav .nav-link {
   font-family: 'Cardo', serif;
   color: blue;
+  padding-left: 50px;
+  padding-right: 100px;
 }
 
 .dog-new-title {
@@ -141,7 +141,7 @@ button {
 }
 
 .badge {
-  font-size: 40px;
+  font-size: 15px;
 }
 
 .list-group-item  {

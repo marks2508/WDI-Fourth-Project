@@ -10,7 +10,7 @@ class DogsShow extends React.Component {
     dog: {},
     date: '',
     distance: '',
-    target: 10,
+    target: 7,
     overOrUnder: '',
     back: '',
     filteredWalks: []
@@ -44,7 +44,9 @@ class DogsShow extends React.Component {
       const total = Object.values(filteredArray).reduce((t, n) => t + n.distance, 0);
       const totalDistance = (total).toFixed(1);
       this.setState({distance: totalDistance});
-      if (this.state.target > this.state.distance) {
+      console.log(this.state.target, totalDistance);
+      if (this.state.target < totalDistance) {
+
         this.setState({overOrUnder: 'got enough exercise 😀'});
       } else {
         this.setState({overOrUnder: 'did not get enough exercise 😟'});

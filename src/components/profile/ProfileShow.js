@@ -47,7 +47,7 @@ class ProfileShow extends React.Component {
                 <hr />
                 <h5 className="card-title">Activity info:</h5>
                 <h6 className="card-subtitle mb-2 text-muted">Energy levels: ✮✮✮</h6>
-                <h6 className="card-subtitle mb-2 text-muted">Exercise needs: ✮✮✮</h6>
+                <h6 className="card-subtitle mb-2 text-muted">Exercise needs: ✮✮✮✮</h6>
                 <h6 className="card-subtitle mb-2 text-muted">Playfulness: ✮✮✮✮✮</h6>
                 <hr />
                 <h6 className="card-subtitle mb-2 text-muted">Target daily walks: 7km</h6>

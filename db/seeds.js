@@ -12,7 +12,7 @@ const dogData = [
     breed: 'Puggle',
     age: 6,
     sex: 'Male',
-    image: 'http://cdn3-www.dogtime.com/assets/uploads/gallery/puggle-dog-breed-picture-gallery/face-3.jpg'
+    image: 'https://s-media-cache-ak0.pinimg.com/originals/50/c6/61/50c6615f575b06ecc988064705457ad7.jpg'
   }
 ];
 
